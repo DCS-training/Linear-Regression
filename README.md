@@ -12,7 +12,7 @@ By the end of the course, you will understand the following concepts of LMMs and
 - Model Structure 
 - Model Results Interpretation  
 - Model Comparison and Selection
-- Model Assumption Chekcs
+- Model Assumption Checks
 
 This course is an intermediate-level training course. It requires a basic understanding of R and inferential statistics. Relevant R packages including "tidyverse",  "effects" and "sjPlot" should be downloaded and installed prior to participating in this workshop.
 
