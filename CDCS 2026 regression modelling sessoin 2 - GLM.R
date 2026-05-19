@@ -228,21 +228,33 @@ anova(m_TikTok, test = "Chisq")
 ## (Intercept)               -6.06312    1.78521  -3.396 0.000683 ***
 ##  time_on_Instagram_daily   0.20027    0.05522   3.627 0.000287 ***
 
-# odds of being a TikTok user for time_spent_on_Insta=0, is e(-6.06312)
+# odds of being a TikTok user for time_spent_on_Insta=0, is exp(-6.06312)
 # for each additional minute of time spent on Instagram daily, odds are 
-# multiplied by e(0.20027), which is the equivalent of e(-6.06312 + 0.20027)
+# multiplied by exp(0.20027), which is the equivalent of exp(-6.06312 + 0.20027)
 
-# for 20mins additional time spent on Instagram daily, odds are multiplied
-# by e(-6.06312) * e^(-6.06312+0.20027)^(20), which is the equivalent of 
-# e^(-6.06312+20*0.20027)
-# calculate the probability of someone being a tiktop user if they spent 
-# x min spent on IG
+# for 20mins additional time spent on Instagram daily, odds would be 
+# exp(-6.06312 + 20*0.20027)
 
-summary(m_TikTok)
 
+# Instead of mannually putting in the numbers, we use the coef() function to get the coefficients
+
+# get all coefficients: 
+coef(m_TikTok)
+
+# the intercept: 
+coef(m_TikTok)[1]
+
+# the slope:
 coef(m_TikTok)[2]
 
+
+# Next we can calculate the probability of someone being a tiktop user if they spent x minutes on IG
+# step 1. odds
 exp(coef(m_TikTok)[1] + x * coef(m_TikTok)[2])
+# step 2. calculate probabilites
+exp(coef(m_TikTok)[1] + x * coef(m_TikTok)[2]) / (1 + exp(coef(m_TikTok)[1] + x * coef(m_TikTok)[2]))
+
+# for someone who spends 20 minutes on IG daily: 
 
 exp(coef(m_TikTok)[1] + 20 * coef(m_TikTok)[2]) / (1 + exp(coef(m_TikTok)[1] + 20 * coef(m_TikTok)[2]) )
 
